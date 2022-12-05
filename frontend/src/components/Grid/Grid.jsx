@@ -4,7 +4,21 @@ import { Table, Tbody, Td, Th, Thead, Tr } from "./styles";
 import { FaTrash, FaEdit } from "react-icons/fa";
 import { toast } from "react-toastify";
 
-function Grid({ users }) {
+function Grid({ users, setUsers }) {
+  const handleDelete = async (id) => {
+    await axios
+      .delete("http://localhost:8800/" + id)
+      .then(({ data }) => {
+        const newArray = users.filter((user) => user.ID !== id);
+
+        setUsers(newArray);
+        toast.success(data);
+      })
+      .catch(({ data }) => toast.error(data));
+
+    setOnEdit(null);
+  };
+
   return (
     <Table>
       <Thead>
