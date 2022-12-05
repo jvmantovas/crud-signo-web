@@ -1,8 +1,7 @@
 import GlobalStyle from "./styles/global";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useState } from "react";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import Container from "./styles/container";
 import Title from "./styles/title";
