@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import { Table, Th, Thead, Tr } from "./styles";
+import { Table, Tbody, Td, Th, Thead, Tr } from "./styles";
 import { FaTrash, FaEdit } from "react-icons/fa";
 import { toast } from "react-toastify";
 
