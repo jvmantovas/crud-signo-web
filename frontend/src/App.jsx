@@ -4,6 +4,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Container from "./styles/container";
 import Title from "./styles/title";
 import Form from "./components/Form/Form";
+import Grid from "./components/Grid/Grid";
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <Container>
         <Title>USUÁRIOS</Title>
         <Form />
+        <Grid />
       </Container>
       <ToastContainer autoClose={3000} position={toast.POSITION.TOP_RIGHT} />
       <GlobalStyle />
