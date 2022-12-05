@@ -4,12 +4,16 @@ import { Table, Tbody, Td, Th, Thead, Tr } from "./styles";
 import { FaTrash, FaEdit } from "react-icons/fa";
 import { toast } from "react-toastify";
 
-function Grid({ users, setUsers }) {
+function Grid({ users, setUsers, setOnEdit }) {
+  const handleEdit = (item) => {
+    setOnEdit(item);
+  };
+
   const handleDelete = async (id) => {
     await axios
       .delete("http://localhost:8800/" + id)
       .then(({ data }) => {
-        const newArray = users.filter((user) => user.ID !== id);
+        const newArray = users.filter((user) => user.id !== id);
 
         setUsers(newArray);
         toast.success(data);
@@ -34,17 +38,17 @@ function Grid({ users, setUsers }) {
       <Tbody>
         {users.map((item, i) => (
           <Tr key={i}>
-            <Td width="30%">{item.ID}</Td>
-            <Td width="30%">{item.NOME}</Td>
+            <Td width="5%">{item.id}</Td>
+            <Td width="30%">{item.nome}</Td>
             <Td width="30%" onlyWeb>
-              {item.EMAIL}
+              {item.email}
             </Td>
-            <Td width="20%">{item.TELEFONE}</Td>
+            <Td width="20%">{item.telefone}</Td>
             <Td alignCenter width="5%">
-              <FaEdit />
+              <FaEdit onClick={() => handleEdit(item)} />
             </Td>
             <Td alignCenter width="5%">
-              <FaTrash onClick={() => handleDelete(item.ID)} />
+              <FaTrash onClick={() => handleDelete(item.id)} />
             </Td>
           </Tr>
         ))}

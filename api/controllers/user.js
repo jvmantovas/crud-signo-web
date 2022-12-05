@@ -11,9 +11,9 @@ export const getUsers = (_, res) => {
 };
 
 export const addUser = (req, res) => {
-  const q = "INSET INTO usuarios(`NOME`, `EMAIL`, `TELEFONE`) VALUES(?)";
+  const q = "INSET INTO usuarios(`nome`, `email`, `telefone`) VALUES(?)";
 
-  const values = [req.body.NOME, req.body.EMAIL, req.body.TELEFONE];
+  const values = [req.body.nome, req.body.email, req.body.telefone];
 
   db.query(q, [values], (err) => {
     if (err) return res.json(err);
@@ -23,9 +23,9 @@ export const addUser = (req, res) => {
 
 export const updateUser = (req, res) => {
   const q =
-    "UPDATE usuarios SET `NOME` = ?, `EMAIL` = ?, `TELEFONE` = ? WHERE `ID` = ?";
+    "UPDATE usuarios SET `nome` = ?, `email` = ?, `telefone` = ? WHERE `ID` = ?";
 
-  const values = [req.body.NOME, req.body.EMAIL, req.body.TELEFONE];
+  const values = [req.body.nome, req.body.email, req.body.telefone];
 
   db.query(q, [...values, req.params.id], (err) => {
     if (err) return res.json(err);
@@ -34,7 +34,7 @@ export const updateUser = (req, res) => {
 };
 
 export const deleteUser = (req, res) => {
-  const q = "DELETE FROM usuarios WHERE `ID` = ?";
+  const q = "DELETE FROM usuarios WHERE `id` = ?";
 
   db.query(q, [req.params.id], (err) => {
     if (err) return res.json(err);
