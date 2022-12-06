@@ -85,8 +85,18 @@ function Form({ getUsers, onEdit, setOnEdit }) {
       await axios
         .put("http://localhost:8800/" + onEdit.id, {
           nome: user.nome.value,
+          endereco: user.endereco.value,
+          bairro: user.distric.value,
+          cep: user.zip.value,
+          cidade: user.city.value,
+          uf: user.state.value,
           email: user.email.value,
           telefone: user.telefone.value,
+          tipo: user.tipo.value,
+          quantidade: user.quantidade.value,
+          atracoes: user.atracoes.value,
+          aceita_sugestoes: user.sugestoes.value,
+          imagens: user.imagem.value,
         })
         .then(({ data }) => toast.success(data))
         .catch(({ data }) => toast.error(data));
@@ -94,8 +104,18 @@ function Form({ getUsers, onEdit, setOnEdit }) {
       await axios
         .post("http://localhost:8800", {
           nome: user.nome.value,
+          endereco: user.endereco.value,
+          bairro: user.distric.value,
+          cep: user.zip.value,
+          cidade: user.city.value,
+          uf: user.state.value,
           email: user.email.value,
           telefone: user.telefone.value,
+          tipo: user.tipo.value,
+          quantidade: user.quantidade.value,
+          atracoes: user.atracoes.value,
+          aceita_sugestoes: user.sugestoes.value,
+          imagens: user.imagem.value,
         })
         .then(({ data }) => toast.success(data))
         .catch(({ data }) => toast.error(data));
@@ -103,8 +123,18 @@ function Form({ getUsers, onEdit, setOnEdit }) {
     }
 
     user.nome.value = "";
+    user.endereco.value = "";
+    user.distric.value = "";
+    user.zip.value = "";
+    user.city.value = "";
+    user.state.value = "";
     user.email.value = "";
     user.telefone.value = "";
+    user.tipo.value = "";
+    user.quantidade.value = "";
+    user.atracoes.value = "";
+    user.sugestoes.value = "";
+    user.imagem.value = "";
 
     setOnEdit(null);
     getUsers();
@@ -129,7 +159,7 @@ function Form({ getUsers, onEdit, setOnEdit }) {
       <InputArea>
         <Label>Endereço:</Label>
         <Input
-          name="endereço"
+          name="endereco"
           type="text"
           placeholder="Endereço com número e complemento"
           onChange={(e) => setAddress(e.target.value)}
@@ -221,6 +251,7 @@ function Form({ getUsers, onEdit, setOnEdit }) {
         <Label htmlFor="number">Quantidade:</Label>
         <Input
           id="number"
+          name="quantidade"
           type="number"
           onChange={(e) => setAmount(e.target.value)}
         />
@@ -228,7 +259,7 @@ function Form({ getUsers, onEdit, setOnEdit }) {
       <InputArea>
         <Label>Atrações do evento:</Label>
         <TextArea
-          name="Atrações do evento"
+          name="atracoes"
           rows="4"
           cols="47"
           onChange={(e) => setAttractions(e.target.value)}
@@ -237,7 +268,7 @@ function Form({ getUsers, onEdit, setOnEdit }) {
       <InputArea>
         <RadioInput
           type="checkbox"
-          name="Sugestões de texto para a capa"
+          name="sugestoes"
           value="Aceito"
           onChange={(e) => setAccept(e.target.value)}
         />
@@ -247,7 +278,7 @@ function Form({ getUsers, onEdit, setOnEdit }) {
         <Label>Imagens:</Label>
         <RadioInput
           type="file"
-          name="imagem[]"
+          name="imagem"
           multiple="multiple"
           onChange={(e) => setImages(e.target.value)}
         />
