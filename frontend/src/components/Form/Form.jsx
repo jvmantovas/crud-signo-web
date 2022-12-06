@@ -1,5 +1,14 @@
 import React, { useEffect, useRef } from "react";
-import { Button, FormContainer, Input, InputArea, Label } from "./styles";
+import {
+  Button,
+  FormContainer,
+  Input,
+  InputArea,
+  Label,
+  RadioInput,
+  RadioLabel,
+  TextArea,
+} from "./styles";
 import axios from "axios";
 import { toast } from "react-toastify";
 
@@ -53,38 +62,78 @@ function Form({ getUsers, onEdit, setOnEdit }) {
   };
 
   return (
-    <FormContainer ref={ref} onSubmit={handleSubmit}>
+    <FormContainer
+      ref={ref}
+      onSubmit={handleSubmit}
+      enctype="multipart/form-data"
+    >
+      <h2>DADOS PARA ENTREGA</h2>
       <InputArea>
-        <Label>Nome</Label>
+        <Label>Nome:</Label>
         <Input name="nome" />
       </InputArea>
       <InputArea>
-        <Label>Endereço</Label>
+        <Label>Endereço:</Label>
         <Input />
       </InputArea>
       <InputArea>
-        <Label>Bairro</Label>
+        <Label>Bairro:</Label>
         <Input />
       </InputArea>
       <InputArea>
-        <Label>CEP</Label>
+        <Label>CEP:</Label>
         <Input />
       </InputArea>
       <InputArea>
-        <Label>Cidade</Label>
+        <Label>Cidade:</Label>
         <Input />
       </InputArea>
       <InputArea>
-        <Label>UF</Label>
+        <Label>UF:</Label>
         <Input />
       </InputArea>
       <InputArea>
-        <Label>E-mail</Label>
+        <Label>E-mail:</Label>
         <Input name="email" type="email" />
       </InputArea>
       <InputArea>
-        <Label>Telefone</Label>
+        <Label>Telefone:</Label>
         <Input name="telefone" type="number" />
+      </InputArea>
+      <h2>DADOS PARA PRODUÇÃO</h2>
+      <InputArea>
+        <Label>Tipo Revistinha:</Label>
+        <RadioInput id="convite" name="tipo" type="radio" value="convite" />
+        <RadioLabel for="convite">Convite</RadioLabel>
+        <RadioInput id="lembranca" name="tipo" type="radio" value="lembranca" />
+        <RadioLabel for="lembranca">Lembrança</RadioLabel>
+        <RadioInput
+          id="convite-lembranca"
+          name="tipo"
+          type="radio"
+          value="convite-lembranca"
+        />
+        <RadioLabel for="convite-lembranca">Convite-Lembrança</RadioLabel>
+      </InputArea>
+      <InputArea>
+        <Label>Quantidade:</Label>
+        <Input type="number" />
+      </InputArea>
+      <InputArea>
+        <Label>Atrações do evento:</Label>
+        <TextArea name="Atrações do evento" rows="4" cols="47" />
+      </InputArea>
+      <InputArea>
+        <RadioInput
+          type="checkbox"
+          name="Sugestões de texto para a capa"
+          value="Aceito"
+        />
+        <RadioLabel>Aceito sugestões de texto para a capa</RadioLabel>
+      </InputArea>
+      <InputArea>
+        <Label>Imagens:</Label>
+        <RadioInput type="file" name="imagem[]" multiple="multiple" />
       </InputArea>
       <Button type="submit">Continuar</Button>
     </FormContainer>

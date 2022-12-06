@@ -2,8 +2,9 @@ import styled from "styled-components";
 
 export const FormContainer = styled.form`
   display: flex;
+  flex-direction: column;
   align-items: flex-end;
-  gap: 10px;
+  gap: 8px;
   flex-wrap: wrap;
   background-color: #fff;
   padding: 20px;
@@ -13,18 +14,36 @@ export const FormContainer = styled.form`
 
 export const InputArea = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
 `;
 
 export const Input = styled.input`
-  width: 120px;
-  height: 40px;
+  width: 300px;
+  height: 35px;
   padding: 0 10px;
   border: 1px solid #bbb;
   border-radius: 5px;
+  display: flex;
 `;
 
-export const Label = styled.label``;
+export const RadioInput = styled.input`
+  padding-right: 5px;
+`;
+
+export const RadioLabel = styled.label`
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+  padding: 0 8px;
+`;
+
+export const Label = styled.label`
+  display: flex;
+  align-items: center;
+  padding-right: 10px;
+`;
+
+export const TextArea = styled.textarea``;
 
 export const Button = styled.button`
   height: 42px;
