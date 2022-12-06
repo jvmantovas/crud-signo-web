@@ -15,6 +15,14 @@ export const FormContainer = styled.form`
 export const InputArea = styled.div`
   display: flex;
   flex-direction: row;
+  .input {
+    width: 300px;
+    height: 35px;
+    padding: 0 10px;
+    border: 1px solid #bbb;
+    border-radius: 5px;
+    display: flex;
+  }
 `;
 
 export const Input = styled.input`
@@ -43,7 +51,10 @@ export const Label = styled.label`
   padding-right: 10px;
 `;
 
-export const TextArea = styled.textarea``;
+export const TextArea = styled.textarea`
+  border: 1px solid #bbb;
+  border-radius: 5px;
+`;
 
 export const Button = styled.button`
   height: 42px;

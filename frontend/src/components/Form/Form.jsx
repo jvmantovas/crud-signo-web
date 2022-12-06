@@ -12,6 +12,7 @@ import {
 import axios from "axios";
 import { toast } from "react-toastify";
 import emailjs from "@emailjs/browser";
+import InputMask from "react-input-mask";
 
 function Form({ getUsers, onEdit, setOnEdit }) {
   const ref = useRef();
@@ -27,7 +28,33 @@ function Form({ getUsers, onEdit, setOnEdit }) {
   const [amount, setAmount] = useState("");
   const [attractions, setAttractions] = useState("");
   const [accept, setAccept] = useState("");
-  const [images, setImages] = useState("");
+  const [images, setImages] = useState([]);
+  const [imagesURLs, setImagesURLs] = useState([]);
+
+  const brPhoneMaskProperties = {
+    mask: "(99) 99999-9999",
+    minLength: 14,
+    beforemaskedstatechange: ({ nextState }) => {
+      let { value } = nextState;
+
+      const digits = value.replace(/\D/g, "");
+
+      if (digits.length === 11) {
+        value = digits.replace(/^(\d{2})(\d{5})(\d{4})$/, "($1) $2-$3");
+      }
+      return {
+        ...nextState,
+        value,
+      };
+    },
+  };
+
+  useEffect(() => {
+    if (images.length < 1 || images.length > 5) return;
+    const newImgUrls = [];
+    images.forEach((image) => newImgUrls.push(URL.createObjectURL(image)));
+    setImagesURLs(newImgUrls);
+  }, [images]);
 
   useEffect(() => {
     if (onEdit) {
@@ -39,7 +66,15 @@ function Form({ getUsers, onEdit, setOnEdit }) {
     }
   }, [onEdit]);
 
-  function sendEmail() {
+  const sendEmail = () => {
+    const uploadedImages = () => {
+      {
+        imagesURLs.map((imageSrc) => (
+          <img src={imageSrc} width="200px" height="200px" />
+        ));
+      }
+    };
+
     const templateParams = {
       name: name,
       address: address,
@@ -53,7 +88,7 @@ function Form({ getUsers, onEdit, setOnEdit }) {
       amount: amount,
       attractions: attractions,
       accept: accept,
-      images: images,
+      images: uploadedImages,
     };
 
     emailjs
@@ -71,15 +106,20 @@ function Form({ getUsers, onEdit, setOnEdit }) {
           toast.error(err);
         }
       );
-  }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     const user = ref.current;
 
+    const regEx = /[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,8}(.[a-z{2,8}])?/g;
+
     if (!user.nome.value || !user.email.value || !user.telefone.value) {
       return toast.warn("Preencha todos os campos obrigatórios.");
+    }
+    if (!regEx.test(email)) {
+      return toast.warn("E-mail inválido!");
     }
     if (onEdit) {
       await axios
@@ -119,25 +159,12 @@ function Form({ getUsers, onEdit, setOnEdit }) {
         })
         .then(({ data }) => toast.success(data))
         .catch(({ data }) => toast.error(data));
-      sendEmail();
+      // sendEmail();
+      setImagesURLs([]);
+      e.target.reset();
+      setOnEdit(null);
+      getUsers();
     }
-
-    user.nome.value = "";
-    user.endereco.value = "";
-    user.distric.value = "";
-    user.zip.value = "";
-    user.city.value = "";
-    user.state.value = "";
-    user.email.value = "";
-    user.telefone.value = "";
-    user.tipo.value = "";
-    user.quantidade.value = "";
-    user.atracoes.value = "";
-    user.sugestoes.value = "";
-    user.imagem.value = "";
-
-    setOnEdit(null);
-    getUsers();
   };
 
   return (
@@ -148,11 +175,11 @@ function Form({ getUsers, onEdit, setOnEdit }) {
     >
       <h2>DADOS PARA ENTREGA</h2>
       <InputArea>
-        <Label>Nome:</Label>
+        <Label>Nome*:</Label>
         <Input
           name="nome"
           type="text"
-          placeholder="Nome completo"
+          placeholder="*Campo Obrigatório"
           onChange={(e) => setName(e.target.value)}
         />
       </InputArea>
@@ -161,7 +188,7 @@ function Form({ getUsers, onEdit, setOnEdit }) {
         <Input
           name="endereco"
           type="text"
-          placeholder="Endereço com número e complemento"
+          placeholder=""
           onChange={(e) => setAddress(e.target.value)}
         />
       </InputArea>
@@ -202,21 +229,23 @@ function Form({ getUsers, onEdit, setOnEdit }) {
         />
       </InputArea>
       <InputArea>
-        <Label>E-mail:</Label>
+        <Label>E-mail*:</Label>
         <Input
           name="email"
           type="email"
-          placeholder="exemplo@exemplo.com"
+          placeholder="*Campo Obrigatório"
           onChange={(e) => setEmail(e.target.value)}
         />
       </InputArea>
       <InputArea>
-        <Label>Telefone:</Label>
-        <Input
+        <Label>Telefone*:</Label>
+        <InputMask
+          className="input"
           name="telefone"
-          type="number"
-          placeholder=""
+          type="text"
+          placeholder="*Campo Obrigatório"
           onChange={(e) => setPhone(e.target.value)}
+          mask={brPhoneMaskProperties.mask}
         />
       </InputArea>
       <h2>DADOS PARA PRODUÇÃO</h2>
@@ -280,8 +309,12 @@ function Form({ getUsers, onEdit, setOnEdit }) {
           type="file"
           name="imagem"
           multiple="multiple"
-          onChange={(e) => setImages(e.target.value)}
+          multipleAccept="image/*"
+          onChange={(e) => setImages([...e.target.files])}
         />
+        {imagesURLs.map((imageSrc) => (
+          <img key={imageSrc} src={imageSrc} width="20px" height="20px" />
+        ))}
       </InputArea>
       <Button type="submit">Continuar</Button>
     </FormContainer>
