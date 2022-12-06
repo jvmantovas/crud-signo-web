@@ -196,7 +196,7 @@ function Form({ getUsers, onEdit, setOnEdit }) {
           id="convite"
           name="tipo"
           type="radio"
-          value="convite"
+          value="Convite"
           onChange={(e) => setType(e.target.value)}
         />
         <RadioLabel htmlFor="convite">Convite</RadioLabel>
@@ -204,7 +204,7 @@ function Form({ getUsers, onEdit, setOnEdit }) {
           id="lembranca"
           name="tipo"
           type="radio"
-          value="lembranca"
+          value="Lembrança"
           onChange={(e) => setType(e.target.value)}
         />
         <RadioLabel htmlFor="lembranca">Lembrança</RadioLabel>
@@ -212,7 +212,7 @@ function Form({ getUsers, onEdit, setOnEdit }) {
           id="convite-lembranca"
           name="tipo"
           type="radio"
-          value="convite-lembranca"
+          value="Convite-Lembrança"
           onChange={(e) => setType(e.target.value)}
         />
         <RadioLabel htmlFor="convite-lembranca">Convite-Lembrança</RadioLabel>
