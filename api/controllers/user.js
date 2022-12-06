@@ -11,9 +11,24 @@ export const getUsers = (_, res) => {
 };
 
 export const addUser = (req, res) => {
-  const q = "INSERT INTO usuarios(`nome`, `email`, `telefone`) VALUES(?)";
+  const q =
+    "INSERT INTO usuarios(`nome`, `endereco`, `bairro`, `cep`, `cidade`, `uf`, `email`, `telefone`, `tipo`, `quantidade`, `atracoes`, `aceita_sugestoes`, `imagens`) VALUES(?)";
 
-  const values = [req.body.nome, req.body.email, req.body.telefone];
+  const values = [
+    req.body.nome,
+    req.body.endereco,
+    req.body.bairro,
+    req.body.cep,
+    req.body.cidade,
+    req.body.uf,
+    req.body.email,
+    req.body.telefone,
+    req.body.tipo,
+    req.body.quantidade,
+    req.body.atracoes,
+    req.body.aceita_sugestoes,
+    req.body.imagens,
+  ];
 
   db.query(q, [values], (err) => {
     if (err) return res.json(err);
@@ -23,9 +38,23 @@ export const addUser = (req, res) => {
 
 export const updateUser = (req, res) => {
   const q =
-    "UPDATE usuarios SET `nome` = ?, `email` = ?, `telefone` = ? WHERE `id` = ?";
+    "UPDATE usuarios SET `nome` = ?, `endereco` = ?, `bairro` = ?, `cep` = ?, `cidade` = ?, `uf` = ?, `email` = ?, `telefone` = ?, `tipo` = ?, `quantidade` = ?, `atracoes` = ?, `aceita_sugestoes` = ?, `imagens` = ? WHERE `id` = ?";
 
-  const values = [req.body.nome, req.body.email, req.body.telefone];
+  const values = [
+    req.body.nome,
+    req.body.endereco,
+    req.body.bairro,
+    req.body.cep,
+    req.body.cidade,
+    req.body.uf,
+    req.body.email,
+    req.body.telefone,
+    req.body.tipo,
+    req.body.quantidade,
+    req.body.atracoes,
+    req.body.aceita_sugestoes,
+    req.body.imagens,
+  ];
 
   db.query(q, [...values, req.params.id], (err) => {
     if (err) return res.json(err);
