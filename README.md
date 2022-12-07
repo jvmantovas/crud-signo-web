@@ -17,11 +17,10 @@ O projeto consiste em um crud proposto no Teste Técnico da Signo Web, desenvolv
 
 ## 💻 Projeto
 
-O projeto consiste em um CRUD (NodeJS) de cadastro, exibição, edição e remoção de usuários vinculado a um banco de dados (MySQL).<br/> <br/> 
-A tela inicial consiste no formulário de cadastro responsivo contendo os inputs para preenchimento, radio inputs, checkbox e attachment, 
+O projeto consiste em um CRUD (NodeJS e React) de cadastro, exibição, edição e remoção de usuários vinculado a um banco de dados (MySQL).<br/> <br/> 
+A tela inicial consiste no formulário de cadastro responsivo(HTML gerado através do React) contendo os inputs para preenchimento, radio inputs, checkbox e attachment, 
 ao final do preenchimento ao clicar no botão Continuar, os campos obrigatórios são checados, é feita uma validação do e-mail e se as informações forem preenchidas
-corretamente, os dados são inseridos no banco de dados e é disparado um e-mail de confirmação de cadastro para o usuário e para teste@signoweb.com.br e é apresentada
-na tela uma mensagem de confirmação de envio do formulário e de envio do e-mail.<br /><br />
+corretamente, os dados são inseridos no banco de dados e é disparado um e-mail de confirmação de cadastro para o usuário e para o e-mail indicado no teste(teste@signoweb.com.br) e é apresentada na tela uma mensagem de confirmação de envio do formulário e de envio do e-mail.<br /><br />
 No topo direito da tela inicial esta disposto um botão "Ver cadastros" que direciona para a página de cadastros, contendo um grid com id, nome, email (apenas em telas grandes) e telefone
 dos usuários cadastrados, buscando as informações diretamente do banco de dados e exibindo-as na tela. O grid contém dois botões com as opções editar e remover, a opção editar direciona para o formulário
 de edição que após ser editado e confirmado através do botão "Continuar", atualiza as informações no banco de dados e recarrega a página para que o grid atualize. O botão deletar no grid, ao ser clidado, 
@@ -136,7 +135,10 @@ Facilidade na criação e organização do projeto, criando um ambiente de desen
 
 Caso enfrente problemas com autenticação com o MySQL ao executar a api:
 
-- Verificar as configurações do SQLServer Authentication Method - “Use Legacy Authentication Method”
+- Verificar as configurações do SQLServer Authentication Method 
+```
+“Use Legacy Authentication Method”
+```
 
 - Executar comando abaixo no MySQL Workbench, alterando ‘password’ para a senha do usuário root:
 ```SQL
