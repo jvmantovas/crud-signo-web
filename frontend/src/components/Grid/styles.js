@@ -9,7 +9,6 @@ export const Table = styled.table`
   box-shadow: 0px 0px 5px #ccc;
   border-radius: 5px;
   word-break: break-all;
-  display: none;
 `;
 
 export const Thead = styled.thead``;

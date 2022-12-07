@@ -11,8 +11,6 @@ body {
     justify-content: center;
     align-items: center;
     background-color: #F2f2f2;
-    padding: 40px 15%;
-    margin: 50px 0;
 }
 `;
 
