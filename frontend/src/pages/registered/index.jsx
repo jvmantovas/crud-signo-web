@@ -6,10 +6,18 @@ import Container from "../../styles/container";
 import Title from "../../styles/title";
 import Form from "../../components/Form/Form";
 import Grid from "../../components/Grid/Grid";
+import { useNavigate } from "react-router-dom";
+import { Header } from "../Register/styles";
+import { Button } from "../../components/Button/Button";
 
 const Registered = () => {
   const [users, setUsers] = useState([]);
   const [onEdit, setOnEdit] = useState(null);
+
+  const navigate = useNavigate();
+  const handleClickRegister = () => {
+    navigate("/");
+  };
 
   const getUsers = async () => {
     try {
@@ -27,9 +35,17 @@ const Registered = () => {
   return (
     <>
       <Container>
-        <Title>USUÁRIOS</Title>
-        <Form onEdit={onEdit} setOnEdit={setOnEdit} getUsers={getUsers} />
+        <Header>
+          <Title>CADASTROS</Title>
+          <Button
+            title="Voltar"
+            variant="secondary"
+            onClick={handleClickRegister}
+          />
+        </Header>
         <Grid users={users} setUsers={setUsers} setOnEdit={setOnEdit} />
+        <Title id="edit">EDITAR CADASTRO</Title>
+        <Form onEdit={onEdit} setOnEdit={setOnEdit} getUsers={getUsers} />
       </Container>
       <ToastContainer autoClose={3000} position={toast.POSITION.TOP_RIGHT} />
     </>
