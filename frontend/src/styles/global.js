@@ -12,6 +12,9 @@ body {
     align-items: center;
     background-color: #F2f2f2;
 }
+a {
+    color: black;
+}
 `;
 
 export default Global;
