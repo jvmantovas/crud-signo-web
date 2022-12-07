@@ -67,8 +67,18 @@ function Form({ getUsers, onEdit, setOnEdit }) {
       const user = ref.current;
 
       user.nome.value = onEdit.nome;
+      user.endereco.value = onEdit.endereco;
+      user.distric.value = onEdit.distric;
+      user.zip.value = onEdit.zip;
+      user.city.value = onEdit.city;
+      user.state.value = onEdit.state;
       user.email.value = onEdit.email;
       user.telefone.value = onEdit.telefone;
+      user.tipo.value = onEdit.tipo;
+      user.quantidade.value = onEdit.quantidade;
+      user.atracoes.value = onEdit.atracoes;
+      user.sugestoes.value = onEdit.sugestoes;
+      user.imagem.value = onEdit.imagem;
     }
   }, [onEdit]);
 
@@ -146,6 +156,7 @@ function Form({ getUsers, onEdit, setOnEdit }) {
         })
         .then(({ data }) => toast.success(data))
         .catch(({ data }) => toast.error(data));
+      // window.location.reload(false);
     } else {
       await axios
         .post("http://localhost:8800", {
@@ -165,7 +176,7 @@ function Form({ getUsers, onEdit, setOnEdit }) {
         })
         .then(({ data }) => toast.success(data))
         .catch(({ data }) => toast.error(data));
-      sendEmail();
+      // sendEmail();
       setImagesURLs([]);
       e.target.reset();
     }
@@ -300,12 +311,15 @@ function Form({ getUsers, onEdit, setOnEdit }) {
       </InputArea>
       <CheckboxInputArea>
         <Checkbox
+          id="sugestoes"
           type="checkbox"
           name="sugestoes"
           value="Aceito"
           onChange={(e) => setAccept(e.target.value)}
         />
-        <CheckboxLabel>Aceito sugestões de texto para a capa</CheckboxLabel>
+        <CheckboxLabel htmlFor="sugestoes">
+          Aceito sugestões de texto para a capa
+        </CheckboxLabel>
       </CheckboxInputArea>
       <InputArea>
         <Label>Imagens:</Label>
