@@ -33,6 +33,8 @@ export const Td = styled.td`
   width: ${(props) => (props.width ? props.width : "auto")};
 
   @media (max-width: 500px) {
-    ${(props) => props.onlyWeb && "display: none"}
+    ${(props) => props.onlyWeb && "display: none"};
+    font-size: 14px;
+    word-break: keep-all;
   }
 `;
