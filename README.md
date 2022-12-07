@@ -69,7 +69,7 @@ Port: 3306
 User: root
 ```
 
-Executar script "crud_usuarios.sql" para criação da database e table.
+Executar script "crud.sql" no MySQL para criação da database e table.
 
 Editar arquivo “db.js” dentro da pasta “api” com o root password do MySQL:
 ```JavaScript
