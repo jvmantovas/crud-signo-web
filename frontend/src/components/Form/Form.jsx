@@ -1,10 +1,16 @@
 import React, { useState, useEffect, useRef } from "react";
 import {
   Button,
+  Checkbox,
+  CheckboxInputArea,
+  CheckboxLabel,
   FormContainer,
+  Header,
+  ImageInput,
   Input,
   InputArea,
   Label,
+  RadioArea,
   RadioInput,
   RadioLabel,
   TextArea,
@@ -173,7 +179,7 @@ function Form({ getUsers, onEdit, setOnEdit }) {
       onSubmit={handleSubmit}
       enctype="multipart/form-data"
     >
-      <h2>DADOS PARA ENTREGA</h2>
+      <Header>DADOS PARA ENTREGA</Header>
       <InputArea>
         <Label>Nome*:</Label>
         <Input
@@ -248,8 +254,8 @@ function Form({ getUsers, onEdit, setOnEdit }) {
           mask={brPhoneMaskProperties.mask}
         />
       </InputArea>
-      <h2>DADOS PARA PRODUÇÃO</h2>
-      <InputArea>
+      <Header>DADOS PARA PRODUÇÃO</Header>
+      <RadioArea>
         <Label>Tipo Revistinha:</Label>
         <RadioInput
           id="convite"
@@ -275,7 +281,7 @@ function Form({ getUsers, onEdit, setOnEdit }) {
           onChange={(e) => setType(e.target.value)}
         />
         <RadioLabel htmlFor="convite-lembranca">Convite-Lembrança</RadioLabel>
-      </InputArea>
+      </RadioArea>
       <InputArea>
         <Label htmlFor="number">Quantidade:</Label>
         <Input
@@ -294,18 +300,18 @@ function Form({ getUsers, onEdit, setOnEdit }) {
           onChange={(e) => setAttractions(e.target.value)}
         />
       </InputArea>
-      <InputArea>
-        <RadioInput
+      <CheckboxInputArea>
+        <Checkbox
           type="checkbox"
           name="sugestoes"
           value="Aceito"
           onChange={(e) => setAccept(e.target.value)}
         />
-        <RadioLabel>Aceito sugestões de texto para a capa</RadioLabel>
-      </InputArea>
+        <CheckboxLabel>Aceito sugestões de texto para a capa</CheckboxLabel>
+      </CheckboxInputArea>
       <InputArea>
         <Label>Imagens:</Label>
-        <RadioInput
+        <ImageInput
           type="file"
           name="imagem"
           multiple="multiple"

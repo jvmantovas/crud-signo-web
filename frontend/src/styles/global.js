@@ -7,11 +7,12 @@ const Global = createGlobalStyle`
     font-family: 'poppins', sans-serif;
 }
 body {
-    width: 100vw;
-    height: 100vh;
     display: flex;
     justify-content: center;
+    align-items: center;
     background-color: #F2f2f2;
+    padding: 40px 15%;
+    margin: 50px 0;
 }
 `;
 
