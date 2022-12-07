@@ -78,7 +78,6 @@ function Form({ getUsers, onEdit, setOnEdit }) {
       user.quantidade.value = onEdit.quantidade;
       user.atracoes.value = onEdit.atracoes;
       user.sugestoes.value = onEdit.aceita_sugestoes;
-      // user.imagem.value = onEdit.imagens;
     }
   }, [onEdit]);
 
