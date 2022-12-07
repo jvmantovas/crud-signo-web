@@ -165,11 +165,9 @@ function Form({ getUsers, onEdit, setOnEdit }) {
         })
         .then(({ data }) => toast.success(data))
         .catch(({ data }) => toast.error(data));
-      // sendEmail();
+      sendEmail();
       setImagesURLs([]);
       e.target.reset();
-      setOnEdit(null);
-      getUsers();
     }
   };
 
