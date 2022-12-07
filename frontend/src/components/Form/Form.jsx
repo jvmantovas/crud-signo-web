@@ -127,7 +127,9 @@ function Form({ getUsers, onEdit, setOnEdit }) {
     e.preventDefault();
 
     function refreshPage() {
-      window.location.reload(false);
+      setTimeout(() => {
+        window.location.reload(false);
+      }, 3500);
     }
 
     const user = ref.current;
