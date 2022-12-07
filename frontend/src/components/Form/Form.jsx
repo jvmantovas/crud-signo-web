@@ -68,17 +68,17 @@ function Form({ getUsers, onEdit, setOnEdit }) {
 
       user.nome.value = onEdit.nome;
       user.endereco.value = onEdit.endereco;
-      user.distric.value = onEdit.distric;
-      user.zip.value = onEdit.zip;
-      user.city.value = onEdit.city;
-      user.state.value = onEdit.state;
+      user.distric.value = onEdit.bairro;
+      user.zip.value = onEdit.cep;
+      user.city.value = onEdit.cidade;
+      user.state.value = onEdit.uf;
       user.email.value = onEdit.email;
       user.telefone.value = onEdit.telefone;
       user.tipo.value = onEdit.tipo;
       user.quantidade.value = onEdit.quantidade;
       user.atracoes.value = onEdit.atracoes;
-      user.sugestoes.value = onEdit.sugestoes;
-      // user.imagem.value = onEdit.imagem;
+      user.sugestoes.value = onEdit.aceita_sugestoes;
+      // user.imagem.value = onEdit.imagens;
     }
   }, [onEdit]);
 
@@ -127,6 +127,10 @@ function Form({ getUsers, onEdit, setOnEdit }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    function refreshPage() {
+      window.location.reload(false);
+    }
+
     const user = ref.current;
 
     const regEx = /[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,8}(.[a-z{2,8}])?/g;
@@ -156,7 +160,7 @@ function Form({ getUsers, onEdit, setOnEdit }) {
         })
         .then(({ data }) => toast.success(data))
         .catch(({ data }) => toast.error(data));
-      // window.location.reload(false);
+      refreshPage();
     } else {
       await axios
         .post("http://localhost:8800", {
