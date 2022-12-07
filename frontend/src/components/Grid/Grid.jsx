@@ -3,6 +3,7 @@ import axios from "axios";
 import { Table, Tbody, Td, Th, Thead, Tr } from "./styles";
 import { FaTrash, FaEdit } from "react-icons/fa";
 import { toast } from "react-toastify";
+import { HashLink } from "react-router-hash-link";
 
 function Grid({ users, setUsers, setOnEdit }) {
   const handleEdit = (item) => {
@@ -43,9 +44,11 @@ function Grid({ users, setUsers, setOnEdit }) {
             <Td width="30%" onlyWeb>
               {item.email}
             </Td>
-            <Td width="20%">{item.telefone}</Td>
+            <Td width="25%">{item.telefone}</Td>
             <Td alignCenter width="5%">
-              <FaEdit onClick={() => handleEdit(item)} />
+              <HashLink to="/cadastros/#edit">
+                <FaEdit onClick={() => handleEdit(item)} />
+              </HashLink>
             </Td>
             <Td alignCenter width="5%">
               <FaTrash onClick={() => handleDelete(item.id)} />
